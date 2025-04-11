@@ -1,0 +1,10 @@
+Place the Recurvia logo image here as 'recurvia-logo.png'.
+The logo should have a turquoise color scheme as shown in the original design.
+
+Additionally, add the following images:
+1. hero-bg.jpg - A high-quality tech-themed background for the hero section
+2. about-image.jpg - An image for the About section (could be a team or office photo)
+3. founder-akshita.jpg - Photo of founder Akshita Sharma
+4. founder-priya.jpg - Photo of founder Priya Nehra
+5. founder-mansi.jpg - Photo of founder Mansi Saini
+6. portfolio-placeholder-1.jpg through portfolio-placeholder-6.jpg - Images for the portfolio items 

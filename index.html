@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recurvia - Code. Evolve. Repeat.</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <div class="theme-switch-wrapper">
+        <i class="fas fa-moon theme-icon" id="themeIcon"></i>
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" placeholder="checkbox">
+            <div class="slider"></div>
+        </label>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="images/recurvia_icon.png" alt="Recurvia Logo">
+            </div>
+            <div class="logo-text">
+                <h1>Recurvia</h1>
+                <p>Code. Evolve. Repeat.</p>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#founders">Founders</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <i class="fas fa-bars" id="openMenu"></i>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Transform Your Digital Presence</h1>
+                <h2><span id="element"></span></h2>
+                <p>We create powerful digital solutions that help your business thrive in the modern market</p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn btn-primary">Our Services</a>
+                    <a href="#contact" class="btn btn-secondary">Get a Quote</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services section-padding" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Services</h2>
+                <p>Comprehensive digital solutions for your business needs</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Logo Design</h3>
+                    <p>Create a distinctive brand identity with our custom logo design services that capture your brand's essence.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <h3>Poster Design</h3>
+                    <p>Eye-catching poster designs that effectively communicate your message and captivate your audience.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Website Design</h3>
+                    <p>User-centered web designs that are aesthetically pleasing, responsive, and optimized for conversions.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fab fa-wix"></i>
+                    </div>
+                    <h3>Wix Website Building</h3>
+                    <p>Professional Wix websites with custom functionality, animations, and responsive designs.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Custom Web Development</h3>
+                    <p>Tailored web solutions built with clean code and the latest technologies to meet your specific needs.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>App Development</h3>
+                    <p>Native and cross-platform mobile applications designed for optimal performance and user experience.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Software Development</h3>
+                    <p>Customized software solutions that streamline your business processes and increase productivity.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>IT Consulting</h3>
+                    <p>Expert advice on technology implementation, optimization, and digital transformation strategies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio section-padding" id="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Work</h2>
+                <p>Some of our recent projects</p>
+            </div>
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="logo">Logo Design</button>
+                <button class="filter-btn" data-filter="web">Web Design</button>
+                <button class="filter-btn" data-filter="app">App Development</button>
+            </div>
+            <div class="portfolio-grid">
+                <!-- Portfolio items would be dynamically generated -->
+                <div class="portfolio-item" data-category="logo">
+                    <div class="portfolio-img">
+                        <img src="images/logo-deisgn.webp" alt="Logo Design Project">
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Creative  Identity</h3>
+                        <p>Logo Design</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-img">
+                        <img src="images/E-commerce-logo.png" alt="Web Design Project">
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>E-commerce Website</h3>
+                        <p>Web Design</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="app">
+                    <div class="portfolio-img">
+                        <img src="images/app-development.gif" alt="App Development Project">
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Fitness Tracker App</h3>
+                        <p>App Development</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-img">
+                        <img src="images/Website.avif" alt="Web Design Project">
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Corporate Website</h3>
+                        <p>Web Design</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="logo">
+                    <div class="portfolio-img">
+                        <img src="images/minimalist-logo.jpg" alt="Logo Design Project">
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Minimalist Logo </h3>
+                        <p>Logo Design</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="app">
+                    <div class="portfolio-img">
+                        <img src="images/food.jpg" alt="App Development Project">
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Food Delivery App</h3>
+                        <p>App Development</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about section-padding" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Recurvia</h2>
+                <p>Your technology partner for the digital age</p>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="images/team.png" alt="Recurvia Team">
+                </div>
+                <div class="about-text">
+                    <h3>Who We Are</h3>
+                    <p>Recurvia is a full-service IT solutions provider specializing in design, development, and digital transformation. Our name embodies our philosophy: we continuously evolve and improve through iterative processes.</p>
+                    
+                    <h3>Our Mission</h3>
+                    <p>We aim to empower businesses with cutting-edge technology solutions that drive growth, enhance user experiences, and create lasting value in the digital landscape.</p>
+                    
+                    <h3>Our Approach</h3>
+                    <p>We believe in a collaborative, client-centered approach, combining technical excellence with creative thinking to deliver solutions that exceed expectations.</p>
+                    
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <h4>150+</h4>
+                            <p>Projects Completed</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>95%</h4>
+                            <p>Client Satisfaction</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>10+</h4>
+                            <p>Years Experience</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founders Section -->
+    <section class="founders section-padding" id="founders">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Founders</h2>
+                <p>Meet the visionaries behind Recurvia</p>
+            </div>
+            <div class="founders-grid">
+                <div class="founder-card">
+                    <div class="founder-img">
+                        <img src="images/founder_akshita.jpg" alt="Akshita Sharma">
+                    </div>
+                    <div class="founder-info">
+                        <h3>Akshita Sharma</h3>
+                        <p class="founder-position">Chief Executive Officer</p>
+                        <p class="founder-bio">Visionary leader with extensive experience in IT services and digital transformation. Passionate about creating innovative solutions that drive business growth.</p>
+                        <div class="founder-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="founder-card">
+                    <div class="founder-img">
+                        <img src="images/founder-priya.jpg" alt="Priya Nehra">
+                    </div>
+                    <div class="founder-info">
+                        <h3>Priya Nehra</h3>
+                        <p class="founder-position">Chief Technology Officer</p>
+                        <p class="founder-bio">Technology expert with a deep understanding of software architecture and emerging tech trends. Leads our development teams with passion and precision.</p>
+                        <div class="founder-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="founder-card">
+                    <div class="founder-img">
+                        <img src="images/founder-mansi.jpg" alt="Mansi Saini">
+                    </div>
+                    <div class="founder-info">
+                        <h3>Mansi Saini</h3>
+                        <p class="founder-position">Chief Creative Officer</p>
+                        <p class="founder-bio">Award-winning designer with an eye for detail and aesthetics. Oversees all creative projects and ensures our designs set new industry standards.</p>
+                        <div class="founder-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Client Testimonials</h2>
+                <p>What our clients say about us</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"Recurvia transformed our online presence with a stunning website that perfectly captures our brand identity. Their team was professional, responsive, and delivered beyond our expectations."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h3>Sarah Johnson</h3>
+                        <p>Marketing Director, TechCorp</p>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"The mobile app developed by Recurvia has significantly improved our customer engagement and streamlined our operations. A truly valuable partnership."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h3>Michael Chen</h3>
+                        <p>CEO, InnoServe Solutions</p>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"Their logo design captured exactly what we wanted for our brand. Recurvia's creative team has an exceptional ability to translate ideas into visual realities."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h3>Emma Rodriguez</h3>
+                        <p>Founder, Bloom Boutique</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section-padding" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <p>Have a project in mind? Let's talk</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Our Location</h3>
+                            <p>123 Tech Avenue, Digital City, 54321</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email Us</h3>
+                            <p>info@recurvia.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h3>Call Us</h3>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/recurvia-logo.png" alt="Recurvia Logo">
+                </div>
+                <div class="footer-links">
+                    <div class="footer-links-column">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#portfolio">Portfolio</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#founders">Founders</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links-column">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#services">Logo Design</a></li>
+                            <li><a href="#services">Website Design</a></li>
+                            <li><a href="#services">App Development</a></li>
+                            <li><a href="#services">Software Development</a></li>
+                            <li><a href="#services">IT Consulting</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Subscribe to Our Newsletter</h3>
+                    <p>Stay updated with our latest news and offers.</p>
+                    <form id="newsletterForm">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Recurvia. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+</body>
+</html> 

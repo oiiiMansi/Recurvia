@@ -1,0 +1,9 @@
+Founder Images Information:
+
+1. founder-akshita.jpg - Use the image of the person with glasses wearing a floral pink shawl/kimono over a black top (second image provided)
+
+2. founder-mansi.jpg - Use the image of the person with glasses wearing a suit/blazer with ID card (first image provided)
+
+3. founder-priya.jpg - Currently missing, placeholder needed
+
+Note: When adding these images to the website, they will be displayed in circular frames with a turquoise border and pulse animation effect. 
