@@ -122,12 +122,43 @@ document.addEventListener('DOMContentLoaded', function() {
             const subject = document.getElementById('subject').value;
             const message = document.getElementById('message').value;
             
-            // Here you would normally send this data to a server
-            // For now we'll just show an alert
-            alert(`Thank you for your message, ${name}! We will get back to you soon.`);
+            // Show loading indicator
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
             
-            // Reset form
-            contactForm.reset();
+            // Send data to backend API
+            fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, email, subject, message })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Show success message
+                    alert(`Thank you for your message, ${name}! We will get back to you soon.`);
+                    
+                    // Reset form
+                    contactForm.reset();
+                } else {
+                    // Show error
+                    alert('There was an error sending your message. Please try again.');
+                    console.error('Error:', data);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error sending your message. Please try again.');
+            })
+            .finally(() => {
+                // Reset button
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
         });
     }
 
@@ -138,11 +169,42 @@ document.addEventListener('DOMContentLoaded', function() {
             // Get email
             const email = newsletterForm.querySelector('input[type="email"]').value;
             
-            // Here you would normally subscribe the email
-            alert(`Thank you for subscribing with ${email}! You'll receive our newsletter soon.`);
+            // Show loading indicator
+            const submitBtn = newsletterForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Subscribing...';
+            submitBtn.disabled = true;
             
-            // Reset form
-            newsletterForm.reset();
+            // Send data to backend API
+            fetch('/api/newsletter', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Show success message
+                    alert(`Thank you for subscribing with ${email}! You'll receive our newsletter soon.`);
+                    
+                    // Reset form
+                    newsletterForm.reset();
+                } else {
+                    // Show error or already subscribed message
+                    alert(data.message || 'There was an error subscribing to the newsletter. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error subscribing to the newsletter. Please try again.');
+            })
+            .finally(() => {
+                // Reset button
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
         });
     }
 
