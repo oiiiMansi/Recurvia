@@ -16,6 +16,10 @@ class WebsiteManager {
             navOffset: 70
         };
         
+        // Bind methods to preserve context
+        this.handleScroll = this.handleScroll.bind(this);
+        this.handleResize = this.handleResize.bind(this);
+        
         this.init();
     }
 
@@ -59,12 +63,20 @@ class WebsiteManager {
         toggleSwitch.checked = isDarkMode;
 
         // Listen for system theme changes
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        const handleSystemThemeChange = (e) => {
             if (!this.getStoredTheme()) {
                 this.setTheme(e.matches, true);
                 toggleSwitch.checked = e.matches;
             }
-        });
+        };
+
+        if (mediaQuery.addEventListener) {
+            mediaQuery.addEventListener('change', handleSystemThemeChange);
+        } else {
+            // Fallback for older browsers
+            mediaQuery.addListener(handleSystemThemeChange);
+        }
 
         toggleSwitch.addEventListener('change', (e) => {
             this.setTheme(e.target.checked, true);
@@ -116,10 +128,12 @@ class WebsiteManager {
         if (!navbar) return;
 
         // Mobile menu toggle
-        menuBtn?.addEventListener('click', (e) => {
-            e.stopPropagation();
-            navLinks?.classList.toggle('show');
-        });
+        if (menuBtn && navLinks) {
+            menuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                navLinks.classList.toggle('show');
+            });
+        }
 
         // Close menu on link click
         navLinksItems.forEach(item => {
@@ -135,23 +149,26 @@ class WebsiteManager {
             }
         });
 
-        // Optimized scroll handler with debouncing
-        let scrollTimeout;
-        const handleScroll = () => {
-            if (scrollTimeout) return;
-            
-            scrollTimeout = requestAnimationFrame(() => {
-                const scrolled = window.scrollY > 100;
-                navbar.classList.toggle('scrolled', scrolled);
-                this.updateActiveNavLink();
-                scrollTimeout = null;
-            });
-        };
-
-        window.addEventListener('scroll', handleScroll, { passive: true });
+        // Add scroll event listener
+        window.addEventListener('scroll', this.handleScroll, { passive: true });
         
         // Smooth scrolling for anchor links
         this.initSmoothScrolling();
+    }
+
+    handleScroll() {
+        // Optimized scroll handler with throttling
+        if (this.scrollTimeout) return;
+        
+        this.scrollTimeout = requestAnimationFrame(() => {
+            const navbar = document.querySelector('.navbar');
+            if (navbar) {
+                const scrolled = window.scrollY > 100;
+                navbar.classList.toggle('scrolled', scrolled);
+            }
+            this.updateActiveNavLink();
+            this.scrollTimeout = null;
+        });
     }
 
     initSmoothScrolling() {
@@ -301,7 +318,10 @@ class WebsiteManager {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            const email = form.querySelector('input[type="email"]').value;
+            const emailInput = form.querySelector('input[type="email"]');
+            if (!emailInput) return;
+            
+            const email = emailInput.value;
             
             if (!this.isValidEmail(email)) {
                 this.showFormError('Please enter a valid email address.');
@@ -355,6 +375,8 @@ class WebsiteManager {
 
     async submitForm(url, data, form, successMessage) {
         const submitBtn = form.querySelector('button[type="submit"]');
+        if (!submitBtn) return;
+        
         const originalText = submitBtn.textContent;
         
         try {
@@ -496,7 +518,7 @@ class WebsiteManager {
             this.state.currentTestimonial = next;
         };
 
-        setInterval(rotateTestimonials, this.config.testimonialInterval);
+        this.testimonialInterval = setInterval(rotateTestimonials, this.config.testimonialInterval);
 
         // Add touch support for mobile
         this.addTestimonialTouchSupport(testimonials);
@@ -600,24 +622,24 @@ class WebsiteManager {
     }
 
     initScrollAnimations() {
-        let ticking = false;
+        // Use the bound handleScroll method for scroll animations
+        this.scrollAnimationTicking = false;
         
-        const handleScroll = () => {
-            if (!ticking) {
+        const handleScrollAnimations = () => {
+            if (!this.scrollAnimationTicking) {
                 requestAnimationFrame(() => {
                     this.updateScrollAnimations();
-                    ticking = false;
+                    this.scrollAnimationTicking = false;
                 });
-                ticking = true;
+                this.scrollAnimationTicking = true;
             }
         };
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('scroll', handleScrollAnimations, { passive: true });
     }
 
     updateScrollAnimations() {
         const scrollY = window.pageYOffset;
-        const windowHeight = window.innerHeight;
         
         // Parallax effects for hero section
         const heroSection = document.querySelector('.hero');
@@ -734,23 +756,28 @@ class WebsiteManager {
     // Enhanced Typed Text with Error Handling
     initTypedText() {
         const element = document.getElementById('element');
-        if (!element || typeof Typed === 'undefined') return;
+        if (!element) return;
 
-        try {
-            new Typed('#element', {
-                strings: ['Code.', 'Evolve.', 'Repeat.', 'Innovate.', 'Create.'],
-                typeSpeed: 50,
-                backSpeed: 30,
-                backDelay: 1000,
-                startDelay: 500,
-                loop: true,
-                showCursor: true,
-                cursorChar: '|',
-                smartBackspace: true
-            });
-        } catch (error) {
-            console.error('Error initializing Typed.js:', error);
-            // Fallback to simple text rotation
+        // Check if Typed.js is available
+        if (typeof Typed !== 'undefined') {
+            try {
+                new Typed('#element', {
+                    strings: ['Code.', 'Evolve.', 'Repeat.', 'Innovate.', 'Create.'],
+                    typeSpeed: 50,
+                    backSpeed: 30,
+                    backDelay: 1000,
+                    startDelay: 500,
+                    loop: true,
+                    showCursor: true,
+                    cursorChar: '|',
+                    smartBackspace: true
+                });
+            } catch (error) {
+                console.error('Error initializing Typed.js:', error);
+                this.initSimpleTextRotation(element);
+            }
+        } else {
+            // Fallback to simple text rotation if Typed.js is not available
             this.initSimpleTextRotation(element);
         }
     }
@@ -759,7 +786,7 @@ class WebsiteManager {
         const texts = ['Code.', 'Evolve.', 'Repeat.', 'Innovate.', 'Create.'];
         let currentIndex = 0;
         
-        setInterval(() => {
+        this.textRotationInterval = setInterval(() => {
             element.textContent = texts[currentIndex];
             currentIndex = (currentIndex + 1) % texts.length;
         }, 2000);
@@ -778,11 +805,29 @@ class WebsiteManager {
         }
     }
 
+    // Add resize handler for responsive behavior
+    handleResize() {
+        // Handle responsive behavior on window resize
+        const navLinks = document.getElementById('navLinks');
+        if (navLinks && window.innerWidth > 768) {
+            navLinks.classList.remove('show');
+        }
+    }
+
     // Cleanup method for page unload
     cleanup() {
         // Clear intervals and observers
         this.state.observers.forEach(observer => observer.disconnect());
         this.state.animations.forEach(animation => animation.cancel && animation.cancel());
+        
+        // Clear specific intervals
+        if (this.testimonialInterval) {
+            clearInterval(this.testimonialInterval);
+        }
+        
+        if (this.textRotationInterval) {
+            clearInterval(this.textRotationInterval);
+        }
         
         // Remove event listeners
         window.removeEventListener('scroll', this.handleScroll);
@@ -792,6 +837,9 @@ class WebsiteManager {
 
 // Initialize the website manager
 const websiteManager = new WebsiteManager();
+
+// Add resize event listener
+window.addEventListener('resize', websiteManager.handleResize, { passive: true });
 
 // Cleanup on page unload
 window.addEventListener('beforeunload', () => {
